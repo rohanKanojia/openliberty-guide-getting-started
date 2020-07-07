@@ -14,6 +14,8 @@ docker pull openliberty/open-liberty:kernel-java8-openj9-ubi
 
 docker build -t openliberty-getting-started:1.0-SNAPSHOT .
 
+cat Dockerfile
+
 docker run -d --name gettingstarted-app -p 9080:9080 openliberty-getting-started:1.0-SNAPSHOT
 
 sleep 60
