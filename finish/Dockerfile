@@ -16,7 +16,13 @@ LABEL \
   summary="The system microservice from the Getting Started guide" \
   description="This image contains the system microservice running with the Open Liberty runtime."
 
-COPY --chown=1001:0 src/main/liberty/config/ /config/
-COPY --chown=1001:0 target/*.war /config/apps/
+# Eclipse JKube's default assembly name, files are packaged under this folder:
+ARG JKUBE_DEFAULT_ASSEMBLY=maven
+COPY --chown=1001:0 $JKUBE_DEFAULT_ASSEMBLY/src/main/liberty/config/ /config/
+COPY --chown=1001:0 $JKUBE_DEFAULT_ASSEMBLY/target/*.war /config/apps/
+
+# Expose Ports
+EXPOSE 9080
+EXPOSE 9443
 
 RUN configure.sh
